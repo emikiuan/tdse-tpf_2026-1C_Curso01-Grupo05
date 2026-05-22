@@ -13,38 +13,38 @@
 Para cumplir con la implementación del Producto Mínimo Viable (prototipo), el proyecto incorpora los siguientes elementos:
 
 **Hardware obligatorio:**
-* [cite_start]Dip Switchs, Buttons [cite: 202][cite_start], Leds[cite: 203], Buzzer, módulo HM-10 (para usar App vía Bluetooth).
-* [cite_start]Memoria E2PROM externa o Flash interna (para almacenamiento del SET_UP y configuraciones)[cite: 204].
-* [cite_start]Sensores analógicos: Potenciómetro de 20K [cite: 205] [cite_start]y Joystick[cite: 201].
-* [cite_start]Para la interconexión de componentes, **no se utilizará protoboard ni cables Dupont**; se implementará una placa base experimental con componentes y conectores soldados e interconexión mediante cables soldados[cite: 216].
+* Dip Switchs, Buttons, Leds, Buzzer, módulo HM-10 (para usar App vía Bluetooth).
+* Memoria E2PROM externa o Flash interna (para almacenamiento del SET_UP y configuraciones).
+* Sensores analógicos: Potenciómetro de 20K y Joystick.
+* Para la interconexión de componentes, **no se utilizará protoboard ni cables Dupont**; se implementará una placa base experimental con componentes y conectores soldados e interconexión mediante cables soldados.
 
 **Hardware adicional:**
-* [cite_start]Pantalla LCD I2C para interfaz gráfica[cite: 206].
-* [cite_start]Sensor ultrasónico HC-SR04 para medición de niveles[cite: 207].
+* Pantalla LCD I2C para interfaz gráfica.
+* Sensor ultrasónico HC-SR04 para medición de niveles.
 
 **Programación obligatorio:**
-* [cite_start]Sistema Bare Metal (sin Sistema Operativo), basado en un modelo Event-Triggered System (ETS) que reduce el consumo[cite: 273].
-* [cite_start]Arquitectura Estructurada/Modular (Escrutar/Procesar/Actuar) evitando el código bloqueante[cite: 258, 259].
+* Sistema Bare Metal (sin Sistema Operativo), basado en un modelo Event-Triggered System (ETS) que reduce el consumo.
+* Arquitectura Estructurada/Modular (Escrutar/Procesar/Actuar) evitando el código bloqueante.
 * Ejecutor cíclico Super-Loop con un Tick de 1mS (Systick => Callback).
-* [cite_start]Tareas de código no bloqueante y diseño estructurado mediante Máquina de Estados Finitos (FSM)[cite: 271].
+* Tareas de código no bloqueante y diseño estructurado mediante Máquina de Estados Finitos (FSM).
 * Menú Interactivo navegado mediante Joystick.
-* [cite_start]Gestión de Bajo Consumo (estado SAVE ENERGY)[cite: 196].
-* [cite_start]Múltiples modos de operación: NORMAL (Menú Principal), SET_UP (Estado Fabricante) y FALLA (Estado Error)[cite: 173, 180, 197].
-* [cite_start]Periféricos I2C [cite: 206] [cite_start]y uso de DMA en ADC para lectura de sensores[cite: 253].
+* Gestión de Bajo Consumo (estado SAVE ENERGY).
+* Múltiples modos de operación: NORMAL (Menú Principal), SET_UP (Estado Fabricante) y FALLA (Estado Error).
+* Periféricos I2C y uso de DMA en ADC para lectura de sensores.
 
 ---
 
 ### **2. Selección del proyecto a implementar**
 
 #### **2.1 Objetivo del proyecto y resultados esperados**
-[cite_start]El objetivo de este proyecto es diseñar e implementar un sistema embebido para una máquina de café inteligente (Smart Coffee)[cite: 153, 154]. [cite_start]El desarrollo se enfoca en crear un Producto Mínimo Viable [cite: 159] [cite_start]que cumpla con altos estándares de portabilidad, rapidez, eficiencia y bajo costo[cite: 265, 266, 267, 268]. [cite_start]Se busca que la máquina permita seleccionar diversas bebidas (Latte, Mocha, Personalizado) [cite: 163, 164, 171] [cite_start]y cuente con conectividad Bluetooth para configuraciones remotas, asegurando un sistema robusto, de bajo consumo [cite: 273] [cite_start]y sin retardos bloqueantes[cite: 258, 259].
+El objetivo de este proyecto es diseñar e implementar un sistema embebido para una máquina de café inteligente (Smart Coffee). El desarrollo se enfoca en crear un Producto Mínimo Viable que cumpla con altos estándares de portabilidad, rapidez, eficiencia y bajo costo. Se busca que la máquina permita seleccionar diversas bebidas (Latte, Mocha, Personalizado) y cuente con conectividad Bluetooth para configuraciones remotas, asegurando un sistema robusto, de bajo consumo y sin retardos bloqueantes.
 
 #### **2.2 Proyectos similares**
 Se consideran tres alternativas de diseño que cumplen con el objetivo de preparar café, variando en su arquitectura:
 
 1. **Máquina de café tradicional:** Control analógico o digital simple, sin conectividad ni menús interactivos.
 2. **Máquina de café con Sistema Operativo (SO):** Equipo de alta gama con pantalla táctil, procesador robusto y SO completo.
-3. [cite_start]**Smart Coffee (Nuestro Proyecto):** Sistema Bare Metal Event-Triggered [cite: 273][cite_start], con menú interactivo (LCD I2C [cite: 206] [cite_start]y Joystick [cite: 201]) y configuración Bluetooth (HM-10).
+3. **Smart Coffee (Nuestro Proyecto):** Sistema Bare Metal Event-Triggered, con menú interactivo (LCD I2C y Joystick) y configuración Bluetooth (HM-10).
 
 Para comparar estas alternativas, se ponderan los aspectos del 1 al 10: Disponibilidad de hardware (10), Eficiencia de recursos y energía (9), Complejidad de software (8), Costo (7), Interfaz de usuario (8) e Interés personal (8).
 
@@ -136,10 +136,10 @@ Para comparar estas alternativas, se ponderan los aspectos del 1 al 10: Disponib
 #### **2.3 Selección de proyecto**
 Considerando la tabla, se elige implementar el sistema **Smart Coffee (MVP)**. Las máquinas tradicionales carecen de la interactividad y la modernidad requerida para el mercado actual, obteniendo baja puntuación en interfaz. Por otro lado, las máquinas con SO son muy costosas, consumen mucha energía y su hardware es complejo de escalar para un entorno educativo/MVP. 
 
-[cite_start]El diseño propuesto con FSM estructurada [cite: 271][cite_start], periféricos I2C [cite: 206] [cite_start]y un modelo Event-Triggered (ETS) [cite: 273] ofrece el equilibrio perfecto. [cite_start]Permite mediciones precisas utilizando DMA en el ADC [cite: 253] [cite_start]y conversiones matemáticas [cite: 256, 257][cite_start], al tiempo que se mantiene en un entorno Bare Metal predecible y de bajo consumo[cite: 273]. [cite_start]El armado en placa base soldada garantiza robustez profesional frente a cables sueltos[cite: 216].
+El diseño propuesto con FSM estructurada, periféricos I2C y un modelo Event-Triggered (ETS) ofrece el equilibrio perfecto. Permite mediciones precisas utilizando DMA en el ADC y conversiones matemáticas, al tiempo que se mantiene en un entorno Bare Metal predecible y de bajo consumo. El armado en placa base soldada garantiza robustez profesional frente a cables sueltos.
 
 ###### **2.3.1 Diagrama en bloques (FSM)**
-[cite_start]El sistema se rige por un diagrama de estados que incluye el ESTADO MENU PRINCIPAL [cite: 173][cite_start], ESTADO SELECCION DE CAFE [cite: 167][cite_start], ESTADO BREWING [cite: 165][cite_start], ESTADO FABRICANTE (Set_Up) [cite: 180] [cite_start]y modos de energía como SAVE ENERGY y OFF[cite: 177, 196].
+El sistema se rige por un diagrama de estados que incluye el ESTADO MENU PRINCIPAL, ESTADO SELECCION DE CAFE, ESTADO BREWING, ESTADO FABRICANTE (Set_Up) y modos de energía como SAVE ENERGY y OFF.
 
 ---
 
@@ -149,18 +149,18 @@ El mercado de máquinas de café varía desde cafeteras de goteo muy económicas
 
 | Grupo | ID | Descripción |
 | :---- | :---- | :---- |
-| **Interfaz** | 1.1 | [cite_start]El sistema contará con un Menú Interactivo visualizado en una pantalla LCD I2C[cite: 206]. |
-| | 1.2 | [cite_start]La navegación se realizará exclusivamente mediante un Joystick [cite: 201] [cite_start]y botones físicos con filtro antirrebote por software[cite: 202, 255]. |
-| | 1.3 | [cite_start]Se utilizarán LEDs para señalizar el proceso de Brewing y un Buzzer para notificaciones sonoras[cite: 165, 203]. |
-| **Operación** | 2.1 | [cite_start]El usuario podrá seleccionar entre opciones como Latte [cite: 163][cite_start], Mocha [cite: 164] [cite_start]o Personalizado[cite: 171]. |
-| | 2.2 | [cite_start]La medición de nivel/stock se realizará mediante un sensor ultrasónico HC-SR04[cite: 207]. |
-| | 2.3 | [cite_start]La temperatura y otras variables analógicas se leerán con ADC gestionado por DMA sin retardos bloqueantes[cite: 253, 258]. |
-| **Modos (FSM)** | 3.1 | [cite_start]El sistema operará en múltiples estados: NORMAL (Menú), FABRICANTE (Set_up) y ERROR (Falla)[cite: 173, 180, 197]. |
-| | 3.2 | [cite_start]Existirá un estado SAVE ENERGY que se activará por Timeout para reducir el consumo[cite: 174, 196]. |
-| **Hardware** | 4.1 | [cite_start]El circuito estará íntegramente montado en una placa experimental soldada, sin uso de protoboard ni cables Dupont[cite: 216]. |
-| | 4.2 | [cite_start]Las configuraciones de fabricante (Set_up) se guardarán en una memoria EEPROM[cite: 204]. |
+| **Interfaz** | 1.1 | El sistema contará con un Menú Interactivo visualizado en una pantalla LCD I2C. |
+| | 1.2 | La navegación se realizará exclusivamente mediante un Joystick y botones físicos con filtro antirrebote por software. |
+| | 1.3 | Se utilizarán LEDs para señalizar el proceso de Brewing y un Buzzer para notificaciones sonoras. |
+| **Operación** | 2.1 | El usuario podrá seleccionar entre opciones como Latte, Mocha o Personalizado. |
+| | 2.2 | La medición de nivel/stock se realizará mediante un sensor ultrasónico HC-SR04. |
+| | 2.3 | La temperatura y otras variables analógicas se leerán con ADC gestionado por DMA sin retardos bloqueantes. |
+| **Modos (FSM)** | 3.1 | El sistema operará en múltiples estados: NORMAL (Menú), FABRICANTE (Set_up) y ERROR (Falla). |
+| | 3.2 | Existirá un estado SAVE ENERGY que se activará por Timeout para reducir el consumo. |
+| **Hardware** | 4.1 | El circuito estará íntegramente montado en una placa experimental soldada, sin uso de protoboard ni cables Dupont. |
+| | 4.2 | Las configuraciones de fabricante (Set_up) se guardarán en una memoria EEPROM. |
 | **Bluetooth** | 5.1 | El sistema incluirá un módulo HM-10 para conexión Bluetooth. |
-| | 5.2 | [cite_start]Mediante una App, el administrador podrá acceder al "Estado Fabricante" para ajustar temperatura y stock remotamente[cite: 180, 183, 189]. |
+| | 5.2 | Mediante una App, el administrador podrá acceder al "Estado Fabricante" para ajustar temperatura y stock remotamente. |
 
 <p align="center"><em>Tabla 3.1: Requisitos del proyecto</em></p>
 
@@ -168,9 +168,9 @@ El mercado de máquinas de café varía desde cafeteras de goteo muy económicas
 | Elemento | Definición |
 | :---- | :---- |
 | **Disparador** | El usuario desea preparar una bebida desde el menú principal. |
-| **Precondiciones** | [cite_start]El sistema está encendido en ESTADO MENU PRINCIPAL[cite: 173]. No hay errores de hardware. |
-| **Flujo principal** | 1. [cite_start]El usuario interactúa con el Joystick [cite: 201] [cite_start]para entrar al ESTADO SELECCION DE CAFE[cite: 167].<br>2. Se selecciona "Latte" y se presiona el botón, generando un evento.<br>3. [cite_start]El sistema transiciona al ESTADO BREWING [cite: 165][cite_start], activando los LEDs correspondientes[cite: 163, 203].<br>4. Al finalizar, suena el Buzzer y se retorna al menú principal. |
-| **Flujos alternativos** | [cite_start]**a.** Si hay inactividad prolongada antes de elegir, se dispara un EVENT_TIMEOUT [cite: 175] [cite_start]y la máquina pasa a SAVE ENERGY [cite: 196][cite_start].<br>**b.** Si falta agua (detectado por HC-SR04 [cite: 207][cite_start]), el sistema entra en ESTADO ERROR[cite: 197]. |
+| **Precondiciones** | El sistema está encendido en ESTADO MENU PRINCIPAL. No hay errores de hardware. |
+| **Flujo principal** | 1. El usuario interactúa con el Joystick para entrar al ESTADO SELECCION DE CAFE.<br>2. Se selecciona "Latte" y se presiona el botón, generando un evento.<br>3. El sistema transiciona al ESTADO BREWING, activando los LEDs correspondientes.<br>4. Al finalizar, suena el Buzzer y se retorna al menú principal. |
+| **Flujos alternativos** | **a.** Si hay inactividad prolongada antes de elegir, se dispara un EVENT_TIMEOUT y la máquina pasa a SAVE ENERGY.<br>**b.** Si falta agua (detectado por HC-SR04), el sistema entra en ESTADO ERROR. |
 
 <p align="center"><em>Tabla 3.2: Caso de uso 1 - El usuario prepara un café</em></p>
 
@@ -179,7 +179,7 @@ El mercado de máquinas de café varía desde cafeteras de goteo muy económicas
 | :---- | :---- |
 | **Disparador** | El administrador necesita calibrar la temperatura y revisar el stock mediante la App. |
 | **Precondiciones** | La máquina está en modo espera. El usuario tiene un smartphone vinculado al módulo HM-10. |
-| **Flujo principal** | 1. El administrador envía un comando por Bluetooth.<br>2. [cite_start]El sistema entra al ESTADO FABRICANTE (Set_up)[cite: 180].<br>3. [cite_start]Navega al subestado de AJUSTE TEMPERATURA [cite: 183] y modifica el valor.<br>4. [cite_start]Revisa el estado de AJUSTE STOCK[cite: 189].<br>5. [cite_start]Los nuevos parámetros se guardan en la memoria EEPROM[cite: 204]. |
+| **Flujo principal** | 1. El administrador envía un comando por Bluetooth.<br>2. El sistema entra al ESTADO FABRICANTE (Set_up).<br>3. Navega al subestado de AJUSTE TEMPERATURA y modifica el valor.<br>4. Revisa el estado de AJUSTE STOCK.<br>5. Los nuevos parámetros se guardan en la memoria EEPROM. |
 | **Flujos alternativos** | **a.** Si se corta la conexión Bluetooth durante el Set_up, el sistema descarta los cambios no guardados y vuelve al Menú Principal.<br>**b.** Si se envían valores fuera de rango, el sistema emite una alerta con el Buzzer y rechaza el dato. |
 
 <p align="center"><em>Tabla 3.3: Caso de uso 2 - Configuración remota Set_Up vía Bluetooth</em></p>
@@ -188,8 +188,8 @@ El mercado de máquinas de café varía desde cafeteras de goteo muy económicas
 | Elemento | Definición |
 | :---- | :---- |
 | **Disparador** | El sistema no detecta interacción por un tiempo definido. |
-| **Precondiciones** | [cite_start]El sistema está inactivo en el ESTADO MENU PRINCIPAL[cite: 173]. |
-| **Flujo principal** | 1. El timer del Super-Loop (basado en el Systick de 1ms) alcanza el límite de inactividad.<br>2. [cite_start]Se genera un EVENT_TIMEOUT[cite: 174].<br>3. [cite_start]La FSM transiciona al estado SAVE ENERGY[cite: 196].<br>4. [cite_start]Se apaga la pantalla LCD [cite: 206] [cite_start]y se reduce el consumo de CPU [cite: 261] [cite_start]utilizando el modelo de ejecución ETS[cite: 273]. |
-| **Flujos alternativos** | [cite_start]**a.** El usuario presiona cualquier botón [cite: 202] [cite_start]o mueve el joystick[cite: 201]. [cite_start]Se genera un evento (ej. EVENT_BOTON_EDGE [cite: 176]), el sistema "despierta" y regresa instantáneamente al Menú Principal. |
+| **Precondiciones** | El sistema está inactivo en el ESTADO MENU PRINCIPAL. |
+| **Flujo principal** | 1. El timer del Super-Loop (basado en el Systick de 1ms) alcanza el límite de inactividad.<br>2. Se genera un EVENT_TIMEOUT.<br>3. La FSM transiciona al estado SAVE ENERGY.<br>4. Se apaga la pantalla LCD y se reduce el consumo de CPU utilizando el modelo de ejecución ETS. |
+| **Flujos alternativos** | **a.** El usuario presiona cualquier botón o mueve el joystick. Se genera un evento (ej. EVENT_BOTON_EDGE), el sistema "despierta" y regresa instantáneamente al Menú Principal. |
 
 <p align="center"><em>Tabla 3.4: Caso de uso 3 - Ingreso al modo de bajo consumo</em></p>
