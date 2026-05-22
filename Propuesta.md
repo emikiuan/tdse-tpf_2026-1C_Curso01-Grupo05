@@ -8,38 +8,12 @@
 
 ---
 
-### **1. Requisitos Particulares de la Entrega**
+### **1. Selección del proyecto a implementar**
 
-Para cumplir con la implementación del Producto Mínimo Viable (prototipo), el proyecto incorpora los siguientes elementos:
-
-**Hardware obligatorio:**
-* Dip Switchs, Buttons, Leds, Buzzer, módulo HM-10 (para usar App vía Bluetooth).
-* Memoria E2PROM externa o Flash interna (para almacenamiento del SET_UP y configuraciones).
-* Sensores analógicos: Potenciómetro de 20K y Joystick.
-* Para la interconexión de componentes, **no se utilizará protoboard ni cables Dupont**; se implementará una placa base experimental con componentes y conectores soldados e interconexión mediante cables soldados.
-
-**Hardware adicional:**
-* Pantalla LCD I2C para interfaz gráfica.
-* Sensor ultrasónico HC-SR04 para medición de niveles.
-
-**Programación obligatorio:**
-* Sistema Bare Metal (sin Sistema Operativo), basado en un modelo Event-Triggered System (ETS) que reduce el consumo.
-* Arquitectura Estructurada/Modular (Escrutar/Procesar/Actuar) evitando el código bloqueante.
-* Ejecutor cíclico Super-Loop con un Tick de 1mS (Systick => Callback).
-* Tareas de código no bloqueante y diseño estructurado mediante Máquina de Estados Finitos (FSM).
-* Menú Interactivo navegado mediante Joystick.
-* Gestión de Bajo Consumo (estado SAVE ENERGY).
-* Múltiples modos de operación: NORMAL (Menú Principal), SET_UP (Estado Fabricante) y FALLA (Estado Error).
-* Periféricos I2C y uso de DMA en ADC para lectura de sensores.
-
----
-
-### **2. Selección del proyecto a implementar**
-
-#### **2.1 Objetivo del proyecto y resultados esperados**
+#### **1.1 Objetivo del proyecto y resultados esperados**
 El objetivo de este proyecto es diseñar e implementar un sistema embebido para una máquina de café inteligente (Smart Coffee). El desarrollo se enfoca en crear un Producto Mínimo Viable que cumpla con altos estándares de portabilidad, rapidez, eficiencia y bajo costo. Se busca que la máquina permita seleccionar diversas bebidas (Latte, Mocha, Personalizado) y cuente con conectividad Bluetooth para configuraciones remotas, asegurando un sistema robusto, de bajo consumo y sin retardos bloqueantes.
 
-#### **2.2 Proyectos similares**
+#### **1.2 Proyectos similares**
 Se consideran tres alternativas de diseño que cumplen con el objetivo de preparar café, variando en su arquitectura:
 
 1. **Máquina de café tradicional:** Control analógico o digital simple, sin conectividad ni menús interactivos.
@@ -133,7 +107,7 @@ Para comparar estas alternativas, se ponderan los aspectos del 1 al 10: Disponib
 </table>
 <p align="center"><em>Tabla 2.2.1: Comparación de proyectos</em></p>
 
-#### **2.3 Selección de proyecto**
+#### **1.3 Selección de proyecto**
 Considerando la tabla, se elige implementar el sistema **Smart Coffee (MVP)**. Las máquinas tradicionales carecen de la interactividad y la modernidad requerida para el mercado actual, obteniendo baja puntuación en interfaz. Por otro lado, las máquinas con SO son muy costosas, consumen mucha energía y su hardware es complejo de escalar para un entorno educativo/MVP. 
 
 El diseño propuesto con FSM estructurada, periféricos I2C y un modelo Event-Triggered (ETS) ofrece el equilibrio perfecto. Permite mediciones precisas utilizando DMA en el ADC y conversiones matemáticas, al tiempo que se mantiene en un entorno Bare Metal predecible y de bajo consumo. El armado en placa base soldada garantiza robustez profesional frente a cables sueltos.
@@ -143,7 +117,7 @@ El sistema se rige por un diagrama de estados que incluye el ESTADO MENU PRINCIP
 
 ---
 
-### **3. Elicitación de requisitos y casos de uso**
+### **2. Elicitación de requisitos y casos de uso**
 
 El mercado de máquinas de café varía desde cafeteras de goteo muy económicas hasta equipos de barista hiper-automatizados. Sin embargo, para entornos de oficina o pequeños comercios, se necesita un punto intermedio: una máquina que ofrezca selección interactiva de productos, diagnóstico de stock, y facilidad de configuración remota, manteniendo un consumo eléctrico mínimo y sin necesidad de grandes sistemas operativos. 
 
