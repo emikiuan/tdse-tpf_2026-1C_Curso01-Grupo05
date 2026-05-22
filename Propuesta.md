@@ -6,6 +6,7 @@
 **Materia: Taller de Sistemas Embebidos**
 **Fecha: 1er cuatrimestre 2026**
 
+
 ---
 
 ### **1. Selección del proyecto a implementar**
