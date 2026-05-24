@@ -6,6 +6,7 @@
 **Materia: Taller de Sistemas Embebidos**
 **Fecha: 1er cuatrimestre 2026**
 
+
 ---
 
 ### **1. Selección del proyecto a implementar**
@@ -111,9 +112,6 @@ Para comparar estas alternativas, se ponderan los aspectos del 1 al 10: Disponib
 Considerando la tabla, se elige implementar el sistema **Smart Coffee (MVP)**. Las máquinas tradicionales carecen de la interactividad y la modernidad requerida para el mercado actual, obteniendo baja puntuación en interfaz. Por otro lado, las máquinas con SO son muy costosas, consumen mucha energía y su hardware es complejo de escalar para un entorno educativo/MVP. 
 
 El diseño propuesto con FSM estructurada, periféricos I2C y un modelo Event-Triggered (ETS) ofrece el equilibrio perfecto. Permite mediciones precisas utilizando DMA en el ADC y conversiones matemáticas, al tiempo que se mantiene en un entorno Bare Metal predecible y de bajo consumo. El armado en placa base soldada garantiza robustez profesional frente a cables sueltos.
-
-###### **2.3.1 Diagrama en bloques (FSM)**
-El sistema se rige por un diagrama de estados que incluye el ESTADO MENU PRINCIPAL, ESTADO SELECCION DE CAFE, ESTADO BREWING, ESTADO FABRICANTE (Set_Up) y modos de energía como SAVE ENERGY y OFF.
 
 ---
 
