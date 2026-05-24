@@ -113,9 +113,6 @@ Considerando la tabla, se elige implementar el sistema **Smart Coffee (MVP)**. L
 
 El diseño propuesto con FSM estructurada, periféricos I2C y un modelo Event-Triggered (ETS) ofrece el equilibrio perfecto. Permite mediciones precisas utilizando DMA en el ADC y conversiones matemáticas, al tiempo que se mantiene en un entorno Bare Metal predecible y de bajo consumo. El armado en placa base soldada garantiza robustez profesional frente a cables sueltos.
 
-###### **2.3.1 Diagrama en bloques (FSM)**
-El sistema se rige por un diagrama de estados que incluye el ESTADO MENU PRINCIPAL, ESTADO SELECCION DE CAFE, ESTADO BREWING, ESTADO FABRICANTE (Set_Up) y modos de energía como SAVE ENERGY y OFF.
-
 ---
 
 ### **2. Elicitación de requisitos y casos de uso**
