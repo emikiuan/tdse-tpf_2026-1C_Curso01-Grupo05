@@ -1,7 +1,7 @@
 # Informe de Avances - Proyecto Cafetera
 
 **Autores:** Dafne Pellegrino, Ezequiel Mancaniello, Emiliano Kiuan\
-**Fecha:** 08/06/2026\  
+**Fecha:** 08/06/2026 \  
 **1er cuatrimestre 2026** A continuación se detalla el informe de avances del TPF a partir de los requerimientos:
 
 ### Referencia de Estados
